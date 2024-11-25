@@ -40,16 +40,6 @@ float Obwod(const Point * p, const Wielokat& wielokat) {
   return fabs(obwod);
 }
 
-// ids table
-// getline
-// >>
-// while do konca pliku
-// getline sprawdzenie
-// f >> id >> x >> y; n razy
-
-
-
-
 int main() {
   ifstream fin("ok.txt");
   if (!fin.good()) {
