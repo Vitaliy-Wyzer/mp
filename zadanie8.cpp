@@ -3,49 +3,50 @@
 using namespace std;
 
 class osoba {
-protected:
 	string _nazwisko;
 	int _liczba_lat;
 public:
-	osoba(): _nazwisko(""), _liczba_lat(0) {}
-	osoba(string last_name, int age): _nazwisko(last_name), _liczba_lat(age) {}
-
+	osoba() {
+		_nazwisko = "";
+		_liczba_lat = 0;
+	}
+	osoba(string nazwisko, int liczba_lat) {
+		_nazwisko = nazwisko;
+		_liczba_lat = liczba_lat;
+	}
 	void pokaz() {
-		cout << _nazwisko << " " << _liczba_lat << endl;
+		cout << "\n" << _nazwisko << " " << _liczba_lat << " ";
 	}
 
-	string nazwisko() const { return _nazwisko; }
-	int liczba_lat() const { return _liczba_lat; }
+	string nazwisko() const {
+		return _nazwisko;
+	}
+	int liczba_lat() const {
+		return _liczba_lat;
+	}
 };
 
-class pracownik: public osoba {
+class pracownik : public osoba {
 	string _stanowisko;
 	double _placa;
 public:
-	pracownik(string last_name, int age, string job_type, double salary): osoba(last_name, age), _stanowisko(job_type), _placa(salary) {}
-
-	pracownik(const pracownik &pr) {
-		_nazwisko = pr.nazwisko();
-		_liczba_lat = pr.liczba_lat();
-		_stanowisko = pr.stanowisko();
-		_placa = pr.placa();
+	pracownik() {
+		_stanowisko = "";
+		_placa = 0.0;
 	}
-
-	string stanowisko() const { return _stanowisko; }
-	double placa() const { return _placa; }
-	
+	pracownik(string nazwisko, int liczba_lat, string stanowisko, double placa): osoba(nazwisko, liczba_lat) {
+		_stanowisko = stanowisko;
+		_placa = placa;
+	}
+	string stanowisko() const {
+		return _stanowisko;
+	}
+	double placa() const {
+		return _placa;
+	}
 	void pokaz() {
 		osoba::pokaz();
-		cout << _stanowisko << " " << _placa << endl;
-	}
-
-	pracownik& operator=(const pracownik & pr) {
-		_nazwisko = pr.nazwisko();
-		_liczba_lat = pr.liczba_lat();
-		_stanowisko = pr.stanowisko();
-		_placa = pr.placa();
-
-		return (*this);
+		cout << " " << _stanowisko << " " << _placa << endl;
 	}
 };
 
@@ -67,6 +68,6 @@ int main()
 	w = &pr3;
 	w->pokaz();
 	static_cast<pracownik*>(w)->pokaz();
-	
+
 	return 0;
 }
