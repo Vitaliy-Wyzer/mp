@@ -82,11 +82,12 @@ public:
       throw i;
     }
   }
-  string wartosc() {
+  float wartosc() {
+	float suma = 0.0f;
     for (int i =0; i<rozmiar; ++i) {
-      cout << p[i].adres() << " " << p[i].cena() << "\n";
+      suma += p[i].cena();
     }
-    return "";
+    return suma;
   }
 
   ~Kurier() {
